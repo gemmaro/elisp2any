@@ -1,0 +1,15 @@
+= <%= name %>
+
+<%= synopsis %>
+
+== Commentary
+
+<% commentary.each do |paragraph| %>
+<%= render_paragraph(paragraph) %>
+<% end %>
+
+== Code
+
+<% code.each do |block| %>
+<%= render_block(block, level: 2) %>
+<% end %>

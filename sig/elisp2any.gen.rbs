@@ -1,0 +1,112 @@
+# TypeProf 0.21.3
+
+# Classes
+module Elisp2any
+  VERSION: String
+
+  class AsciiDocRenderer
+    extend Forwardable
+    @file: untyped
+
+    def initialize: (untyped file) -> void
+    def render: -> untyped
+
+    private
+    def render_paragraph: (untyped paragraph) -> String
+    def render_block: (untyped block, level: untyped) -> String
+    def erb_renderer: (String path) -> untyped
+  end
+
+  class CodeBlock
+    extend Forwardable
+    @node: Node
+
+    def initialize: (Node node) -> void
+    def append: (untyped source, untyped end_byte) -> untyped
+  end
+
+  class InlineCode
+    attr_reader content: untyped
+    def initialize: (untyped content) -> void
+  end
+
+  class Line
+    extend Forwardable
+    include Enumerable
+    @chunks: Array[(InlineCode | String)?]
+
+    def initialize: (Array[(InlineCode | String)?] chunks) -> void
+    def self.parse: (String string) -> Line
+  end
+
+  class Heading
+    extend Forwardable
+    @node: Node
+
+    attr_reader level: Integer
+    attr_reader content: String
+    def initialize: (Node node, Integer level, String content) -> void
+    def name_and_synopsis: -> [untyped, untyped]?
+    def commentary?: -> bool
+    def code?: -> bool
+    def final_name: -> String?
+  end
+
+  class Paragraph
+    extend Forwardable
+    include Enumerable
+    @node: Node
+    @lines: [Line]
+
+    attr_reader end_row: untyped
+    def initialize: (Node node, [Line] lines, untyped end_row) -> void
+    def code?: -> false
+  end
+
+  class Node
+    attr_reader range: Range
+    attr_reader content: untyped
+    def self.from_tree_sitter: (untyped source, untyped ts_node) -> (Array[CodeBlock | Heading | Paragraph])
+    def append: (untyped source, untyped end_byte) -> untyped
+    def initialize: (untyped content, Range range) -> void
+  end
+
+  class TreeSitterParser
+    @source: untyped
+    @node: untyped
+
+    def self.parse: (untyped source) -> untyped
+    def parse: -> untyped
+
+    private
+    def initialize: (untyped source) -> void
+    def parser: -> untyped
+    def elisp_library: -> String
+  end
+
+  class File
+    attr_reader name: nil
+    attr_reader synopsis: nil
+    attr_reader commentary: Array[(CodeBlock | Heading | Paragraph)?]
+    attr_reader code: Array[CodeBlock | Heading | Paragraph]
+    def self.parse: (untyped source) -> File
+    def initialize: (name: nil, synopsis: nil, commentary: Array[(CodeBlock | Heading | Paragraph)?], code: Array[CodeBlock | Heading | Paragraph]) -> void
+  end
+
+  class HTMLRenderer
+    extend Forwardable
+    @file: untyped
+
+    def initialize: (untyped file) -> void
+    def render: -> String
+
+    private
+    def render_paragraph: (untyped paragraph) -> String
+    def render_block: (untyped block, level: untyped) -> String
+    def erb_render: (String path) -> String
+    def h: (untyped string) -> String
+  end
+
+  class Error < StandardError
+  end
+end
