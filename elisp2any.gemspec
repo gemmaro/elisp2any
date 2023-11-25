@@ -25,8 +25,8 @@ Gem::Specification.new do |spec|
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 
-  spec.add_dependency "ruby_tree_sitter", '~> 0.20.8.1'
-  spec.add_development_dependency "webrick"
-  spec.add_development_dependency "rubocop"
-  spec.add_development_dependency "asciidoctor"
+  spec.add_dependency 'ruby_tree_sitter', '~> 0.20.8.1'
+  spec.add_development_dependency 'webrick'
+  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'asciidoctor'
 end

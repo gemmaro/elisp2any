@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require_relative "../lib/elisp2any"
-require_relative "../lib/elisp2any/html_renderer"
+require_relative '../lib/elisp2any'
+require_relative '../lib/elisp2any/html_renderer'
 require 'optparse'
 input = $stdin
 output = $stdout
