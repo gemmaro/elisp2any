@@ -19,11 +19,12 @@ module Elisp2any
         when :comment
           scanner = StringScanner.new(content)
           scanner.skip(';') or raise Error, 'no semicolon for comment'
-          unless scanner.skip(';')
-            (last_node = nodes.last) && last_node.is_a?(CodeBlock) or raise Error, 'no prior code for single semicolon comment'
-            last_node.append(source, range.end)
-            next
-          end
+          scanner.skip(';') or
+            begin
+              (last_node = nodes.last) && last_node.is_a?(CodeBlock) or raise Error, 'no prior code for single semicolon comment'
+              last_node.append(source, range.end)
+              next
+            end
 
           if (level = scanner.skip(/;+/))
             scanner.skip(' ') or raise Error, 'no space after heading semicolons'
