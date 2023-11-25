@@ -29,17 +29,18 @@ module Elisp2any
           if (level = scanner.skip(/;+/))
             scanner.skip(' ') or raise Error, 'no space after heading semicolons'
             nodes << Heading.new(node, level, scanner.rest.chomp)
+            next
           elsif scanner.skip("\n")
-            # nop
+            next
+          end
+
+          scanner.skip(' ') or raise Error, "no space after semicolons: #{scanner.inspect}"
+          line = Line.parse(scanner.rest)
+          if (last_node = nodes.last) && last_node.is_a?(Paragraph) && last_node.end_row + 1 == top_level_node.start_point.row
+            last_node << line
           else
-            scanner.skip(' ') or raise Error, "no space after semicolons: #{scanner.inspect}"
-            line = Line.parse(scanner.rest)
-            if (last_node = nodes.last) && last_node.is_a?(Paragraph) && last_node.end_row + 1 == top_level_node.start_point.row
-              last_node << line
-            else
-              paragraph = Paragraph.new(node, [line], top_level_node.end_point.row)
-              nodes << paragraph
-            end
+            paragraph = Paragraph.new(node, [line], top_level_node.end_point.row)
+            nodes << paragraph
           end
         else
           if (last_node = nodes.last) && last_node.is_a?(CodeBlock)
