@@ -6,6 +6,7 @@ require 'optparse'
 
 input = $stdin
 output = $stdout
+css = nil
 
 OptionParser.new do |parser|
   parser.on('--input=PATH') do |path|
@@ -15,8 +16,12 @@ OptionParser.new do |parser|
   parser.on('--output=PATH') do |path|
     output = File.open(path, 'w')
   end
+
+  parser.on('--css=PATH') do |path|
+    css = path
+  end
 end.parse!
 
 file = Elisp2any::File.parse(input)
-renderer = Elisp2any::HTMLRenderer.new(file)
+renderer = Elisp2any::HTMLRenderer.new(file, css:)
 output.write(renderer.render)

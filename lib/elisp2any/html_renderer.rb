@@ -8,8 +8,9 @@ require_relative 'code_block'
 
 module Elisp2any
   class HTMLRenderer
-    def initialize(file)
+    def initialize(file, css: nil)
       @file = file
+      @css = css || "https://unpkg.com/mvp.css"
     end
 
     def render
