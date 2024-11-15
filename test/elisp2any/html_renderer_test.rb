@@ -1,6 +1,8 @@
 require 'test_helper'
 require 'elisp2any/html_renderer'
 
+__END__
+
 class Elisp2anyTest < ::TestCase
   class HTMLRendererTest < ::TestCase
     test 'render' do

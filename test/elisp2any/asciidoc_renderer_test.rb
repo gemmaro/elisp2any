@@ -1,6 +1,8 @@
 require 'test_helper'
 require 'elisp2any/asciidoc_renderer'
 
+__END__
+
 class Elisp2anyTest < ::TestCase
   class AsciiDocRendererTest < ::TestCase
     test 'render' do
