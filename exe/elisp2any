@@ -1,17 +1,22 @@
 #!/usr/bin/env ruby
+
 require_relative '../lib/elisp2any'
 require_relative '../lib/elisp2any/html_renderer'
 require 'optparse'
+
 input = $stdin
 output = $stdout
+
 OptionParser.new do |parser|
   parser.on('--input=PATH') do |path|
     input = File.open(path)
   end
+
   parser.on('--output=PATH') do |path|
     output = File.open(path, 'w')
   end
 end.parse!
+
 file = Elisp2any::File.parse(input)
 renderer = Elisp2any::HTMLRenderer.new(file)
 output.write(renderer.render)
