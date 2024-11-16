@@ -1,7 +1,7 @@
 require_relative 'lib/elisp2any/version'
 
 Gem::Specification.new do |spec|
-  spec.name = 'elisp2any'
+  spec.name = name = 'elisp2any'
   spec.version = Elisp2any::VERSION
   spec.authors = ['gemmaro']
   spec.email = ['gemmaro.dev@gmail.com']
@@ -10,8 +10,6 @@ Gem::Specification.new do |spec|
   spec.description = 'elisp2any is a command line tool and library for converting Emacs Lisp source to some document markup, such as HTML or AsciiDoc.'
   spec.required_ruby_version = '>= 2.6.0'
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = Dir.chdir(__dir__) do
     `git ls-files -z`.split("\x0").reject do |f|
       (File.expand_path(f) == __FILE__) || f.start_with?(*%w[bin/ test/ spec/ features/ .git .circleci appveyor])
@@ -23,7 +21,16 @@ Gem::Specification.new do |spec|
 
   spec.require_paths = ['lib']
 
-  spec.metadata['rubygems_mfa_required'] = 'true'
+  spec.homepage = homepage = "https://codeberg.org/gemmaro/elisp2any"
+  spec.metadata = {
+    'rubygems_mfa_required' => 'true',
+    'bug_tracker_uri'       => "#{homepage}/issues",
+    'changelog_uri'         => "#{homepage}/src/branch/main/CHANGELOG.md",
+    'documentation_uri'     => "https://www.rubydoc.info/gems/#{name}",
+    'homepage_uri'          => homepage,
+    'source_code_uri'       => homepage,
+    'wiki_uri'              => "#{homepage}/wiki",
+  }
 
   spec.add_dependency 'ruby_tree_sitter', '~> 0.20.8.1'
 
