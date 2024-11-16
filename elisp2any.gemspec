@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email = ['gemmaro.dev@gmail.com']
 
   spec.summary = 'Converter from Emacs Lisp to some document markup'
-  spec.description = 'elisp2any is a command line tool and library for converting Emacs Lisp source to some document markup, such as HTML or Markdown.'
+  spec.description = 'elisp2any is a command line tool and library for converting Emacs Lisp source to some document markup, such as HTML or AsciiDoc.'
   spec.required_ruby_version = '>= 2.6.0'
 
   # Specify which files should be added to the gem when it is released.
