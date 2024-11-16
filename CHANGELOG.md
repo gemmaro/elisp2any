@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.0.3 - 2024-11-16
+
+### Added
+
+* The `--css=PATH` option to the `elisp2any` program.
+
 ## 0.0.2 - 2023-11-25
 
 ### Fixed
