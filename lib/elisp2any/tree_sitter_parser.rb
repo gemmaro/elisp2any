@@ -27,8 +27,7 @@ module Elisp2any
 
       # Set this env var for Guix shell environment or shared object file is not found
       if ENV['ELISP2ANY_GUIX_USE_PROFILE_PATH']
-        profile = ::File.dirname(ENV['PATH'].split(':').select { |path| path.start_with?('/gnu/store/') }.first)
-        shared_object = ::File.join(profile, 'lib/tree-sitter', shared_object)
+        shared_object = ::File.join(ENV["GUIX_ENVIRONMENT"], "lib/tree-sitter", shared_object)
       end
 
       shared_object
