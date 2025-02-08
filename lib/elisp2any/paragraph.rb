@@ -1,9 +1,24 @@
 require 'forwardable'
+require "elisp2any/line"
 
 module Elisp2any
   class Paragraph
+    attr_reader :lines
+
+    def self.scan(scanner)
+      scanner = StringScanner.new(scanner) unless scanner.respond_to?(:skip)
+      lines = []
+      while (line = Line.scan(scanner))
+        lines << line
+      end
+      lines.empty? and return
+      new(:TODO, lines, :TODO)
+    end
+
+    # TODO: delete
     attr_reader :end_row # :nodoc:
 
+    # TODO: delete node and end_row
     def initialize(node, lines, end_row) # :nodoc:
       @node = node
       @lines = lines

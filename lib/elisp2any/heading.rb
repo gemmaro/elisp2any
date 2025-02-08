@@ -5,6 +5,17 @@ module Elisp2any
   class Heading
     attr_reader :level, :content
 
+    def self.scan(scanner)
+      pos = scanner.pos
+      comment = Comment.scan(scanner) or return
+      unless comment.colons >= 3
+        scanner.pos = pos
+        return
+      end
+      new(:TODO, comment.colons - 3, comment.content)
+    end
+
+    # TODO
     def initialize(node, level, content) # :nodoc:
       @node = node
       @level = level

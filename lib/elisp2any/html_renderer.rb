@@ -57,7 +57,7 @@ module Elisp2any
       CGI.escape_html(string)
     end
 
-    extend Forwardable
+    extend Forwardable # :nodoc:
     def_delegators :@file, :name, :synopsis, :commentary, :code
   end
 end

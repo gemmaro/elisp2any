@@ -1,7 +1,7 @@
 require 'forwardable'
 
 module Elisp2any
-  class CodeBlock
+  class CodeBlock # :nodoc:
     def initialize(node) # :nodoc:
       @node = node
     end
@@ -10,7 +10,7 @@ module Elisp2any
       @node.append(source, end_byte)
     end
 
-    extend Forwardable
+    extend Forwardable # :nodoc:
     def_delegators :@node, :content
   end
 end

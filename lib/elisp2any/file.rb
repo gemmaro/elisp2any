@@ -1,9 +1,25 @@
 require_relative 'node'
 require_relative 'tree_sitter_parser'
+require "elisp2any/header_line"
+require "elisp2any/blanklines"
+require "elisp2any/commentary"
+require "elisp2any/code"
 
 module Elisp2any
   class File
-    attr_reader :name, :synopsis, :commentary, :code
+    attr_reader :name, # TODO: filename
+                :synopsis, # TODO: header_line, including description
+                :commentary, :code
+
+    def self.scan(scanner)
+      scanner = StringScanner.new(scanner) unless scanner.respond_to?(:skip)
+      line = HeaderLine.scan(scanner) or return
+      Blanklines.scan(scanner) # optional
+      commentary = Commentary.scan(scanner)
+      Blanklines.scan(scanner) # optional
+      code = Code.scan(scanner)
+      new(name: line.filename, synopsis: line.description, commentary:, code:)
+    end
 
     def self.parse(source)
       source = source.respond_to?(:read) ? source.read : source

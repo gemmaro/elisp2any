@@ -51,7 +51,7 @@ module Elisp2any
       ERB.new(source).result(binding)
     end
 
-    extend Forwardable
+    extend Forwardable # :nodoc:
     def_delegators :@file, :name, :synopsis, :commentary, :code
   end
 end
