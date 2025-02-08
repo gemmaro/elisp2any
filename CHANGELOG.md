@@ -1,6 +1,8 @@
 # Change log of Elisp2any
 
-## Unreleased
+## 0.0.4 - 2025-02-08
+
+* Improved shared object searching for Guix.
 
 ## 0.0.3 - 2024-11-16
 
