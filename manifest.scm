@@ -74,8 +74,8 @@
           (base32 "1wyzfb27zgpvm4110jgv0sl598mxv5dkrg2cwjw3p9g2bq9mav5d"))))
       (build-system tree-sitter-build-system)
       (home-page "https://github.com/Wilfred/tree-sitter-elisp")
-      (synopsis "TODO")
-      (description "TODO")
+      (synopsis "Tree-sitter grammar for Emacs Lisp")
+      (description "This package provides an Emacs Lisp grammar for the Tree-sitter library.")
       (license license:expat))))
 
 (concatenate-manifests
