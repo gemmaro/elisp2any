@@ -9,8 +9,7 @@ module Elisp2any
       assert_equal "init.el", line.filename
       assert_equal "Emacs configuration", line.description
 
-      expected = { "lexical-binding" => "t" }
-      assert_equal expected, line.variables
+      line.variables.to_a => [["lexical-binding", ::Elisp2any::Expression[:t]]]
     end
   end
 end

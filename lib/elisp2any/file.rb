@@ -4,21 +4,31 @@ require "elisp2any/header_line"
 require "elisp2any/blanklines"
 require "elisp2any/commentary"
 require "elisp2any/code"
+require "elisp2any/footer_line"
 
 module Elisp2any
   class File
     attr_reader :name, # TODO: filename
                 :synopsis, # TODO: header_line, including description
-                :commentary, :code
+                :commentary, :code, :header_line
 
     def self.scan(scanner)
+      scanner = scanner.read if scanner.respond_to?(:read)
       scanner = StringScanner.new(scanner) unless scanner.respond_to?(:skip)
-      line = HeaderLine.scan(scanner) or return
+      line = HeaderLine.scan(scanner) or return # TODO: header line
       Blanklines.scan(scanner) # optional
       commentary = Commentary.scan(scanner)
       Blanklines.scan(scanner) # optional
       code = Code.scan(scanner)
-      new(name: line.filename, synopsis: line.description, commentary:, code:)
+      footer_line = FooterLine.scan(scanner)
+      footer_line == line.filename or raise Error, "header and footer filename is not same: #{line.filename} and #{footer_line.filename}"
+      Blanklines.scan(scanner) # optional
+      scanner.eos? or raise Error, "extra content after footer line"
+      new(name: line.filename,
+          synopsis: line.description,
+          commentary:,
+          code:,
+          header_line: line)
     end
 
     def self.parse(source)
@@ -37,11 +47,17 @@ module Elisp2any
       new(name: name, synopsis: synopsis, commentary: commentary, code: code)
     end
 
-    def initialize(name:, synopsis:, commentary:, code:) # :nodoc:
+    # TODO: Remove nil default from footer line
+    def initialize(name:,
+                   synopsis:,
+                   commentary:,
+                   code:,
+                   header_line: nil) # :nodoc:
       @name = name
       @synopsis = synopsis
       @commentary = commentary
       @code = code
+      @header_line = header_line
     end
   end
 end

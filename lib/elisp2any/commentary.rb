@@ -1,15 +1,13 @@
-require "elisp2any/top_heading"
+require "forwardable"
 require "elisp2any/paragraph"
 require "elisp2any/blanklines"
 
 module Elisp2any
   class Commentary
-    attr_reader :paragraphs
-
     def self.scan(scanner)
       pos = scanner.pos
-      heading = TopHeading.scan(scanner) or return
-      unless heading.content == "Commentary:"
+      heading = Elisp2any.scan_top_heading(scanner) or return
+      unless heading == "Commentary:"
         scanner.pos = pos
         return
       end
@@ -19,11 +17,16 @@ module Elisp2any
         paragraphs << par
         Blanklines.scan(scanner) # optional
       end
-      new(paragraphs:)
+      new(paragraphs)
     end
 
-    def initialize(paragraphs:)
+    def initialize(paragraphs)
       @paragraphs = paragraphs
     end
+
+    extend Forwardable # :nodoc:
+    def_delegators :@paragraphs, :each, :size
+
+    include Enumerable
   end
 end

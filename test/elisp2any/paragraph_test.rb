@@ -9,7 +9,15 @@ module Elisp2any
       ELISP
       par = ::Elisp2any::Paragraph.scan(source)
       assert_instance_of ::Elisp2any::Paragraph, par
-      assert_equal 2, par.lines.size
+      assert_equal 2, par.size
+    end
+
+    test "scan inline code" do
+      source = ";; This is a sample sentence including `inline-code'."
+      par = ::Elisp2any::Paragraph.scan(source)
+      assert_instance_of ::Elisp2any::Paragraph, par
+      par => [line]
+      line => ["This is a sample sentence including ", { code: "inline-code" }, "."]
     end
   end
 end

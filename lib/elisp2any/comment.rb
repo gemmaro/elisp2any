@@ -5,7 +5,9 @@ module Elisp2any
     def self.scan(scanner)
       scanner = StringScanner.new(scanner) unless scanner.respond_to?(:skip)
       scanner.skip(/(?<colons>;+)(?<padding> *)(?<content>.*)\n?/) or return
-      new(colons: scanner[:colons].size, content: scanner[:content], padding: scanner[:padding])
+      new(colons: scanner[:colons].size,
+          content: scanner[:content],
+          padding: scanner[:padding])
     end
 
     def initialize(colons:, content:, padding:)

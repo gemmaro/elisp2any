@@ -1,16 +1,14 @@
-require "elisp2any/top_heading"
+require "forwardable"
 require "elisp2any/paragraph"
 require "elisp2any/blanklines"
 require "elisp2any/section"
 
 module Elisp2any
   class Code
-    attr_reader :paragraphs, :sections
-
     def self.scan(scanner)
       pos = scanner.pos
-      heading = TopHeading.scan(scanner) or return
-      unless heading.content == "Code:"
+      heading = Elisp2any.scan_top_heading(scanner) or return
+      unless heading == "Code:"
         scanner.pos = pos
         return
       end
@@ -20,16 +18,32 @@ module Elisp2any
         paragraphs << par
         Blanklines.scan(scanner) # optional
       end
-      section = Section.scan(scanner)
-      unless section.heading.level == 1
-        raise "TODO"
+      blocks = [paragraphs]
+      pos = scanner.pos
+      while (section = Section.scan(scanner))
+        if section.heading.level == 1
+          blocks << section
+          pos = scanner.pos
+        else
+          scanner.pos = pos
+          break
+        end
       end
-      new(paragraphs:, sections: [section])
+      new(blocks)
     end
 
-    def initialize(paragraphs:, sections:)
-      @paragraphs = paragraphs
-      @sections = sections
+    def initialize(blocks)
+      @blocks = blocks
     end
+
+    def sections
+      @blocks.drop(1)
+    end
+
+    extend Forwardable # :nodoc:
+    def_delegator :@blocks, :first, :paragraphs
+    def_delegator :@blocks, :each
+
+    include Enumerable
   end
 end

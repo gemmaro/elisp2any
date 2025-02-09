@@ -1,4 +1,5 @@
 module Elisp2any
+  # TODO: delete
   class InlineCode
     attr_reader :content
 

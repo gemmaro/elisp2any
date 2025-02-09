@@ -2,6 +2,7 @@ require 'strscan'
 require 'forwardable'
 require_relative 'inline_code'
 require "elisp2any/comment"
+require "elisp2any/text"
 
 module Elisp2any
   class Line
@@ -15,7 +16,8 @@ module Elisp2any
       unless comment.padding[0] == " "
         raise Error, "line comment should have a whitespace padding"
       end
-      new(["#{comment.padding[1..]}#{comment.content}"])
+      content = "#{comment.padding[1..]}#{comment.content}"
+      new(Text.scan(content).to_a)
     end
 
     def initialize(chunks) # :nodoc:
@@ -42,8 +44,8 @@ module Elisp2any
       new(chunks)
     end
 
-    extend Forwardable
-    def_delegators :@chunks, :each
+    extend Forwardable # :nodoc:
+    def_delegators :@chunks, :each, :deconstruct
 
     include Enumerable
   end

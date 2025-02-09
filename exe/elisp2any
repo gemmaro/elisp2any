@@ -1,12 +1,15 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/elisp2any'
-require_relative '../lib/elisp2any/html_renderer'
 require 'optparse'
+
+$LOAD_PATH << File.join(__dir__, "../lib")
+require 'elisp2any'
+require 'elisp2any/html_renderer'
 
 input = $stdin
 output = $stdout
 css = nil
+mode = :old
 
 OptionParser.new do |parser|
   parser.on('--input=PATH') do |path|
@@ -20,8 +23,18 @@ OptionParser.new do |parser|
   parser.on('--css=PATH') do |path|
     css = path
   end
+
+  parser.on("--new") do
+    mode = :new
+  end
 end.parse!
 
-file = Elisp2any::File.parse(input)
-renderer = Elisp2any::HTMLRenderer.new(file, css:)
+file = nil
+case mode
+in :new
+  file = Elisp2any::File.scan(input)
+in :old
+  file = Elisp2any::File.parse(input)
+end
+renderer = Elisp2any::HTMLRenderer.new(file, css:, mode:)
 output.write(renderer.render)

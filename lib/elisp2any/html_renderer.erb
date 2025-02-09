@@ -8,15 +8,14 @@
     </head>
     <body>
 	    <main>
-	        <h1><%= name %></h1>
-	        <p><%= synopsis %></p>
-	        <h2>Commentary</h2>
+	        <h1><%= name %><small> &mdash; <%= synopsis %></small></h1>
+            <div style="text-align:right"><%= render(header_line.variables) %></div>
 	        <% commentary.each do |paragraph| %>
-		        <p><%= render_paragraph(paragraph) %></p>
+		        <%= render(paragraph) %>
 	        <% end %>
 	        <h2>Code</h2>
-	        <% code.each do |block| %>
-		        <%= render_block(block, level: 2) %>
+	        <% self.code.each do |block| %>
+		        <%= render(block) %>
 	        <% end %>
 	    </main>
     </body>

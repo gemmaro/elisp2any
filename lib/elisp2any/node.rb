@@ -1,10 +1,11 @@
-require_relative 'code_block'
+require_relative 'codeblock'
 require_relative 'line'
 require_relative 'heading'
 require_relative 'paragraph'
 require 'strscan'
 
 module Elisp2any
+  # TODO: delete
   class Node
     attr_reader :range # :nodoc:
     attr_reader :content
@@ -21,7 +22,7 @@ module Elisp2any
           scanner.skip(';') or raise Error, 'no semicolon for comment'
           scanner.skip(';') or
             begin
-              (last_node = nodes.last) && last_node.is_a?(CodeBlock) or raise Error, 'no prior code for single semicolon comment'
+              (last_node = nodes.last) && last_node.is_a?(Codeblock) or raise Error, 'no prior code for single semicolon comment'
               last_node.append(source, range.end)
               next
             end
@@ -43,10 +44,10 @@ module Elisp2any
             nodes << paragraph
           end
         else
-          if (last_node = nodes.last) && last_node.is_a?(CodeBlock)
+          if (last_node = nodes.last) && last_node.is_a?(Codeblock)
             last_node.append(source, range.end)
           else
-            nodes << CodeBlock.new(node)
+            nodes << Codeblock.new(node)
           end
         end
       end

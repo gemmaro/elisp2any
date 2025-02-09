@@ -3,8 +3,6 @@ require "elisp2any/line"
 
 module Elisp2any
   class Paragraph
-    attr_reader :lines
-
     def self.scan(scanner)
       scanner = StringScanner.new(scanner) unless scanner.respond_to?(:skip)
       lines = []
@@ -25,12 +23,13 @@ module Elisp2any
       @end_row = end_row
     end
 
+    # TODO: delete
     def code?
       false
     end
 
-    extend Forwardable
-    def_delegators :@lines, :empty?, :clear, :<<, :each
+    extend Forwardable # :nodoc:
+    def_delegators :@lines, :empty?, :clear, :<<, :each, :deconstruct, :size
     def_delegators :@node, :adjucent?
 
     include Enumerable
