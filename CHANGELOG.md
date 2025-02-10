@@ -1,5 +1,13 @@
 # Change log of Elisp2any
 
+## 0.0.5 - 2025-02-10
+
+* Upgrade required Ruby version to 3.1 or later.
+* Add `--new` flag to the `elisp2any` command.  It uses new scanner (parser)
+  written in pure Ruby with strscan gem.  The older ones which uses
+  Tree-sitter as parser is deprecated and will be removed from the next
+  version.
+
 ## 0.0.4 - 2025-02-08
 
 * Improved shared object searching for Guix.
