@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
 
   spec.summary = 'Converter from Emacs Lisp to some document markup'
   spec.description = 'elisp2any is a command line tool and library for converting Emacs Lisp source to some document markup, such as HTML or AsciiDoc.'
-  spec.license = "Apache-2.0"
+  spec.license = "GPL-3.0-or-later"
   spec.required_ruby_version = '>= 3.1'
 
   spec.files = Dir.chdir(__dir__) do
