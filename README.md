@@ -15,12 +15,22 @@ $ elisp2any --input /path/to/input/file --output /path/to/output/file
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies.
-Then, run `rake test` to run the tests.
-You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+Two paragraph types:
 
-To install this gem onto your local machine, run `bundle exec rake install`.
-To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```emacs-lisp
+;; This is a major one.
+
+;; This is another major one (1), and a minor one.
+;;
+;; This is still (1) but another minor one.
+```
+
+Heading levels:
+
+```emacs-lisp
+;;; Level 2
+;;;; Level 3
+```
 
 ## Contributing
 

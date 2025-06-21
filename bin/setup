@@ -1,8 +1,0 @@
-#!/gnu/store/v9p25q9l5nnaixkhpap5rnymmwbhf9rp-bash-minimal-5.1.16/bin/bash
-set -euo pipefail
-IFS=$'\n\t'
-set -vx
-
-bundle install
-
-# Do any other automated setup that you need to do here

@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -eu
+if [ $# -ge 1 ]; then
+    lib=$1
+else
+    lib=$HOME/.emacs.d/init.el
+fi
+if [ -f "$lib" ]
+then
+    path=$lib
+else
+    path="$(emacs \
+            --batch \
+            --eval "(princ (with-current-buffer \
+                             (find-library \"$lib\") \
+                             (buffer-file-name)))")"
+fi
+
+if [[ $path == *.gz ]]
+then
+    echo "extracing archive ($path)..." >&2
+    tmp=$(mktemp --suffix=.el)
+    gunzip --to-stdout "$path" > "$tmp"
+    path=$tmp
+    echo "path: $path" >&2
+fi
+
+./exe/elisp2any --input="$path"
