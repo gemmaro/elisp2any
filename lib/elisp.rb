@@ -45,7 +45,7 @@ class Elisp::Sidebar
   end
 end
 
-class PageDelimiter
+class Elisp::PageDelimiter
   def html = "<hr>"
 end
 

@@ -132,7 +132,7 @@ class Elisp::Parser
         @nodes.last << @scanner[:content]
 
       elsif @state == :after_code && @scanner.skip(/\f\n+/)
-        @nodes << PageDelimiter.new
+        @nodes << Elisp::PageDelimiter.new
         @state = :after_page_delimiter
 
       else
