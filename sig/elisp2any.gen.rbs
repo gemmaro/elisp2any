@@ -66,22 +66,8 @@ module Elisp2any
   class Node
     attr_reader range: Range
     attr_reader content: untyped
-    def self.from_tree_sitter: (untyped source, untyped ts_node) -> (Array[CodeBlock | Heading | Paragraph])
     def append: (untyped source, untyped end_byte) -> untyped
     def initialize: (untyped content, Range range) -> void
-  end
-
-  class TreeSitterParser
-    @source: untyped
-    @node: untyped
-
-    def self.parse: (untyped source) -> untyped
-    def parse: -> untyped
-
-    private
-    def initialize: (untyped source) -> void
-    def parser: -> untyped
-    def elisp_library: -> String
   end
 
   class File
