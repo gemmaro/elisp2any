@@ -31,21 +31,7 @@ RDoc::Task.new do |rdoc|
   rdoc.rdoc_files.include(readme, 'lib/**/*.rb')
 end
 
-desc 'start API document server'
-task :serve_api do
-  serve('html')
-end
-
 desc 'generate type signatures'
 task :sig do
   sh 'typeprof', *Dir['lib/**/*.rb'], 'sig/elisp2any.rbs', '-o', 'sig/elisp2any.gen.rbs'
-end
-
-desc 'start HTML fixture server'
-task :serve_fixture do
-  serve('fixtures/init')
-end
-
-def serve(path)
-  sh 'ruby', '-run', '-e', 'httpd', path
 end
