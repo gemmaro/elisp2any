@@ -20,45 +20,10 @@ class Elisp::Parser
   }x
   BLANKLINES = /\n+/
   CODE_OR_BLANKLINES = Regexp.union(CODE, BLANKLINES)
-  DEFAULT_CSS = <<~END_CSS
-    <style>
-      :root {
-        --sidebar-width: 200px;
-      }
-      body {
-        display: flex;
-      }
-      main {
-        max-width: 80rem;
-        margin: auto auto auto var(--sidebar-width);
-        padding-left: 0.5rem;
-        border-box: box-sizing;
-      }
-      .sidebar {
-        padding-right: 0.5rem;
-        width: var(--sidebar-width);
-        position: fixed;
-        boxed-sizing: border-box;
-        overflow-y: auto;
-        height: 100%;
-      }
-      .sidebar details ul {
-        position: relative;
-        left: -1.5rem;
-      }
-      .description {
-        font-style: italic;
-      }
-      pre {
-        font-family: serif;
-      }
-      pre[class="code"] {
-        border-left: solid;
-        padding-left: 0.5rem;
-        white-space: pre-wrap;
-      }
-    </style>
-  END_CSS
+  
+  css = File.read(File.join(__dir__, "default.css"))
+  DEFAULT_CSS = "<style>#{css}</style>"
+  
   HEADING = %r{
     ;;;(?<level>;*)[ ](?<title>.+)\n
     (?:(?:;;)?\n)*

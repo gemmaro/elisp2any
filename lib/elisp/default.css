@@ -1,0 +1,35 @@
+:root {
+    --sidebar-width: 200px;
+}
+body {
+    display: flex;
+}
+main {
+    max-width: 80rem;
+    margin: auto auto auto var(--sidebar-width);
+    padding-left: 0.5rem;
+    box-sizing: border-box;
+}
+.sidebar {
+    padding-right: 0.5rem;
+    width: var(--sidebar-width);
+    position: fixed;
+    box-sizing: border-box;
+    overflow-y: auto;
+    height: 100%;
+}
+.sidebar details ul {
+    position: relative;
+    left: -1.5rem;
+}
+.description {
+    font-style: italic;
+}
+pre {
+    font-family: serif;
+}
+pre[class="code"] {
+    border-left: solid;
+    padding-left: 0.5rem;
+    white-space: pre-wrap;
+}
