@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email = ['gemmaro.dev@gmail.com']
 
   spec.summary = 'Converter from Emacs Lisp to some document markup'
-  spec.description = 'elisp2any is a command line tool and library for converting Emacs Lisp source to some document markup, such as HTML or AsciiDoc.'
+  spec.description = 'elisp2any is a command line tool and library for converting Emacs Lisp source to some document markup, such as HTML.'
   spec.license = "GPL-3.0-or-later"
   spec.required_ruby_version = '>= 3.1'
 
@@ -33,7 +33,6 @@ Gem::Specification.new do |spec|
     'wiki_uri'              => "#{homepage}/wiki",
   }
 
-  spec.add_development_dependency 'asciidoctor'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rubocop', '~> 1.21'
   spec.add_development_dependency 'test-unit', '~> 3.0'

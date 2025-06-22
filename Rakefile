@@ -49,7 +49,3 @@ end
 def serve(path)
   sh 'ruby', '-run', '-e', 'httpd', path
 end
-
-file 'fixtures/init/adoc/index.html' => 'fixtures/init/index.adoc' do |t|
-  sh 'asciidoctor', t.source, '--out-file', t.name
-end

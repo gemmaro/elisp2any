@@ -4,19 +4,6 @@
 module Elisp2any
   VERSION: String
 
-  class AsciiDocRenderer
-    extend Forwardable
-    @file: untyped
-
-    def initialize: (untyped file) -> void
-    def render: -> untyped
-
-    private
-    def render_paragraph: (untyped paragraph) -> String
-    def render_block: (untyped block, level: untyped) -> String
-    def erb_renderer: (String path) -> untyped
-  end
-
   class CodeBlock
     extend Forwardable
     @node: Node
