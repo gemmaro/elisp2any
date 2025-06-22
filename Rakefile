@@ -9,19 +9,6 @@ end
 
 default_tasks = %i[test]
 
-rubocop = true
-
-begin
-  require 'rubocop/rake_task'
-rescue LoadError
-  rubocop = false
-end
-
-if rubocop
-  RuboCop::RakeTask.new
-  default_tasks << :rubocop
-end
-
 task default: default_tasks
 
 require 'rdoc/task'
