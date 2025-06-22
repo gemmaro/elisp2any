@@ -7,11 +7,4 @@ Rake::TestTask.new(:test) do |t|
   t.test_files = FileList['test/**/*_test.rb']
 end
 
-default_tasks = %i[test]
-
-task default: default_tasks
-
-desc 'generate type signatures'
-task :sig do
-  sh 'typeprof', *Dir['lib/**/*.rb'], 'sig/elisp2any.rbs', '-o', 'sig/elisp2any.gen.rbs'
-end
+task default: :test
