@@ -19,6 +19,7 @@ main {
     height: 100%;
 }
 .sidebar details ul {
+    /* Adjusts the position of nested lists to align properly within the sidebar */
     position: relative;
     left: -1.5rem;
 }
@@ -29,7 +30,7 @@ pre {
     font-family: serif;
 }
 pre[class="code"] {
-    border-left: solid;
+    border-left: 2px solid black;
     padding-left: 0.5rem;
     white-space: pre-wrap;
 }
