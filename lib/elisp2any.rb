@@ -1,5 +1,4 @@
 require_relative 'elisp2any/version'
-require_relative 'elisp2any/file'
 require_relative 'elisp2any/heading'
 
 module Elisp2any
