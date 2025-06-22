@@ -11,13 +11,6 @@ default_tasks = %i[test]
 
 task default: default_tasks
 
-require 'rdoc/task'
-RDoc::Task.new do |rdoc|
-  readme = 'README.md'
-  rdoc.main = readme
-  rdoc.rdoc_files.include(readme, 'lib/**/*.rb')
-end
-
 desc 'generate type signatures'
 task :sig do
   sh 'typeprof', *Dir['lib/**/*.rb'], 'sig/elisp2any.rbs', '-o', 'sig/elisp2any.gen.rbs'
