@@ -1,8 +1,8 @@
-require_relative 'lib/elisp2any/version'
+require_relative 'lib/elisp/version'
 
 Gem::Specification.new do |spec|
   spec.name = name = 'elisp2any'
-  spec.version = Elisp2any::VERSION
+  spec.version = Elisp::VERSION
   spec.authors = ['gemmaro']
   spec.email = ['gemmaro.dev@gmail.com']
 
