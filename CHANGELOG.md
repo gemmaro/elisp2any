@@ -1,5 +1,9 @@
 # Change log of Elisp2any
 
+## 0.0.6 - 2025-06-22
+
+Removed previous parsers and added simple strscan base parser.
+
 ## 0.0.5 - 2025-02-10
 
 * Upgrade required Ruby version to 3.1 or later.
