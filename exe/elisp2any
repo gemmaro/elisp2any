@@ -25,15 +25,15 @@ output = $stdout
 css = nil
 
 OptionParser.new do |parser|
-  parser.on('--input=PATH') do |path|
+  parser.on('--input=PATH', 'ELisp file (default: stdin)') do |path|
     input = File.open(path)
   end
 
-  parser.on('--output=PATH') do |path|
+  parser.on('--output=PATH', 'HTML file (default: stdout)') do |path|
     output = File.open(path, 'w')
   end
 
-  parser.on('--css=PATH') do |path|
+  parser.on('--css=PATH', 'stylesheet') do |path|
     css = path
   end
 end.parse!
