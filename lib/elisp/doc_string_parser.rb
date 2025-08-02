@@ -51,6 +51,8 @@ class Elisp::DocStringParser
         uri = CGI.escape(address)
         address = CGI.escape_html(address)
         result << %(<a href="mailto:#{uri}">#{address}</a>)
+      elsif @scanner.skip(/Copyright [(]C[)]/)
+        result << "Copyright &copy;"
       else
         normal << @scanner.getch
       end
