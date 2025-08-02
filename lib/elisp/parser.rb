@@ -156,9 +156,11 @@ class Elisp::Parser
           <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <body>
-          <nav class="sidebar">
-            #{sidebar}
-          </nav>
+          <details>
+            <nav class="sidebar">
+              #{sidebar}
+            </nav>
+          </details>
           <main>
             #{body}
           </main>
