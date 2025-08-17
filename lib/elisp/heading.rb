@@ -26,16 +26,6 @@ class Elisp::Heading
   def html
     name = "h#{@level}"
     content = CGI.escape_html(@content)
-    <<~END_HTML
-      <#{name} id="#{html_id}">
-        #{content}
-        <a href="##{html_id}">#</a>
-      </#{name}>
-    END_HTML
-  end
-
-  def html_id
-    content = CGI.escape(@content)
-    "#{@level}-#{content}"
+    "<#{name}>#{content}</#{name}>"
   end
 end

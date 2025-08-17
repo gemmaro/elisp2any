@@ -95,6 +95,5 @@ end
 
 require_relative "elisp/comment"
 require_relative "elisp/parser"
-require_relative "elisp/sidebar"
 require_relative "elisp/heading"
 require_relative "elisp/doc_string_parser"

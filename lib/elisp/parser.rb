@@ -143,9 +143,6 @@ class Elisp::Parser
 
   def write(output, css: nil)
     css = css ? %(<link rel="stylesheet" href="#{CGI.escape(css)}">) : DEFAULT_CSS
-    sidebar = Elisp::Sidebar.new(@nodes.select { |node| node.is_a?(Elisp::Heading) \
-                                                          && node.level >= 2 })
-                .html
     body = @nodes.map(&:html).join("\n")
     output.write(<<~END_HTML)
       <!doctype html>
@@ -156,14 +153,7 @@ class Elisp::Parser
           <meta name="viewport" content="width=device-width, initial-scale=1">
         </head>
         <body>
-          <details>
-            <nav class="sidebar">
-              #{sidebar}
-            </nav>
-          </details>
-          <main>
-            #{body}
-          </main>
+          <main>#{body}</main>
         </body>
       </html>
     END_HTML
