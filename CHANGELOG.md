@@ -1,5 +1,9 @@
 # Change log of Elisp2any
 
+## Unreleased
+
+Add dump flag for debugging.
+
 ## 0.0.6 - 2025-06-22
 
 Removed previous parsers and added simple strscan base parser.

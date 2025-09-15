@@ -23,6 +23,7 @@ require 'elisp'
 input = $stdin
 output = $stdout
 css = nil
+dump = false
 
 OptionParser.new do |parser|
   parser.on('--input=PATH', 'ELisp file (default: stdin)') do |path|
@@ -36,6 +37,14 @@ OptionParser.new do |parser|
   parser.on('--css=PATH', 'stylesheet') do |path|
     css = path
   end
+
+  parser.on("--dump") { dump = true }
 end.parse!
 
-Elisp.parse(input).write(output, css:)
+doc = Elisp.parse(input)
+if dump
+  pp doc
+  exit
+end
+
+doc.write(output, css:)
