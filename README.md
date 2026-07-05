@@ -15,6 +15,8 @@ $ elisp2any --input /path/to/input/file --output /path/to/output/file
 
 ## Development
 
+To run tests, run `test-unit`.
+
 Two paragraph types:
 
 ```emacs-lisp
