@@ -2,7 +2,14 @@
 
 ## Unreleased
 
-Add dump flag for debugging.
+## 0.0.7 - 2026-07-05
+
+* Add dump flag for debugging.
+* Allow other variables in headers.
+* Remove sidebar.
+* Markup copyright mark.
+* Hide navigation by default.
+* Add comments for command line options.
 
 ## 0.0.6 - 2025-06-22
 
