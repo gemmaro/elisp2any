@@ -50,7 +50,7 @@ class Elisp::Variables
     <<~END_HTML
       <article>
         Header line variables:
-        <pre><code>#{content}</code></pre>
+        <pre class="code"><code>#{content}</code></pre>
       </article>
     END_HTML
   end

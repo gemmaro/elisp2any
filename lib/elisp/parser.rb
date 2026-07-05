@@ -17,7 +17,7 @@ class Elisp::Parser
   HEADER_LINE = %r{
     ;;;[ ]
     (?<title>[a-z]+[.]el)[ ]---[ ](?<desc>.*?)
-    (?:[ ]+-[*]-[ ](?<vars>lexical-binding:[ ]?t);?[ ]-[*]-)?
+    (?:[ ]+-[*]-[ ]*(?<vars>.*?)[ ]*-[*]-)?
     \n+
   }x
   COMMENT = / *;; (?<comment>.*)\n/
