@@ -1,5 +1,7 @@
 # Elisp2any
 
+Project links: [repository](https://codeberg.org/gemmaro/elisp2any), [mirror](https://github.com/gemmaro/elisp2any)
+
 ## Installation
 
 Install the gem and add to the application's `Gemfile` by executing `bundle add elisp2any`.
